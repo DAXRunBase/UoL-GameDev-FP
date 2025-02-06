@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour
+public class MyPlayerInput : MonoBehaviour
 {
     [Header("Player Input states")]
     public Vector2 move;
