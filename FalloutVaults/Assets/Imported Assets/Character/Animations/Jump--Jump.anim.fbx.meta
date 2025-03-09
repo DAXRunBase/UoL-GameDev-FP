@@ -959,3 +959,10 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 181470
+  packageName: Survivalist character
+  packageVersion: 1.1
+  assetPath: Assets/Imported Assets/Character/Animations/Jump--Jump.anim.fbx
+  uploadId: 693203
