@@ -1,11 +1,21 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+//using static Unity.Cinemachine.InputAxisControllerBase<T>;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(MyPlayerInput))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
+    [Tooltip("Player health")]
+    public float Health = 100f;
+    [Tooltip("Player is Dead")]
+    public bool IsDead = false;
+    private bool IsInFluid = false;
+    private float SinkSpeed = 0f;
+    private Vector3 Velocity;
+
     [Tooltip("Move speed of the character in m/s")]
     public float MoveSpeed = 2.0f;
 
@@ -129,9 +139,19 @@ public class PlayerController : MonoBehaviour
     {
         _hasAnimator = TryGetComponent(out _animator);
 
-        JumpAndGravity();
-        GroundedCheck();
-        Move();
+        if (IsDead) return;
+
+        if (!IsInFluid)
+        {
+            JumpAndGravity();
+            GroundedCheck();
+            Move();
+        }
+        else
+        {
+            //Move();
+            FluidDynamics();
+        }
     }
 
     private void AssignAnimationIDs()
@@ -332,5 +352,51 @@ public class PlayerController : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (IsDead) return;
+
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            PlayerDie();
+        }
+    }
+
+    private void PlayerDie()
+    {
+        IsDead = true;
+        Debug.Log("!!! DEAD !!!");
+    }
+
+    private void FluidDynamics()
+    {
+        if (IsDead) return;
+
+        if (IsInFluid)
+        {
+            // Apply sinking effect up to a maximum depth
+            if (transform.position.y > -1.5)
+            {
+                Velocity.y = -SinkSpeed;
+
+                // Apply movement
+                _controller.Move(Velocity * Time.deltaTime);
+            }
+            else
+            {
+                Velocity.y = 0;
+                //_controller.Move(Velocity * Time.deltaTime);
+            }
+        }
+    }
+
+    public void SetInFluid(bool inFluid, float sinkSpeed)
+    {
+        IsInFluid = inFluid;
+        this.SinkSpeed = sinkSpeed;
     }
 }
