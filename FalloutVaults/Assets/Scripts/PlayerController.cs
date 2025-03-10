@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 //using static Unity.Cinemachine.InputAxisControllerBase<T>;
@@ -359,6 +359,7 @@ public class PlayerController : MonoBehaviour
         if (IsDead) return;
 
         Health -= damage;
+        Debug.Log($"💥 Player Takes Damage! Health: {Health}, Damage taken: -{damage}");
 
         if (Health <= 0)
         {
