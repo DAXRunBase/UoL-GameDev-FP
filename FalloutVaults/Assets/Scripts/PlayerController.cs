@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     private float SinkSpeed = 0f;
     private Vector3 Velocity;
 
+    //[Tooltip("Weapon")]
+    //public GameObject Weapon;
+
     [Tooltip("Move speed of the character in m/s")]
     public float MoveSpeed = 2.0f;
 
@@ -133,6 +136,8 @@ public class PlayerController : MonoBehaviour
         // reset our timeouts on start
         _jumpTimeoutDelta = JumpTimeout;
         _fallTimeoutDelta = FallTimeout;
+
+        //Weapon.SetActive(true);
     }
 
     private void Update()
@@ -146,13 +151,27 @@ public class PlayerController : MonoBehaviour
             JumpAndGravity();
             GroundedCheck();
             Move();
+            //Gun();
         }
         else
         {
-            //Move();
             FluidDynamics();
         }
     }
+
+    /*private void Gun()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _animator.SetBool("Weapon", true);
+            Weapon.SetActive(true);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            _animator.SetBool("Weapon", false);
+            Weapon.SetActive(false);
+        }
+    }*/
 
     private void AssignAnimationIDs()
     {

@@ -7,7 +7,7 @@ public class LoadNextScene : MonoBehaviour
 {
     void OnEnable()
     {
-        Debug.Log("Loading MainMenu scene");
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        Debug.Log("Loading next scene");
+        SceneManager.LoadScene("Game Level 1", LoadSceneMode.Single);
     }
 }
