@@ -8,6 +8,6 @@ public class LoadNextScene : MonoBehaviour
     void OnEnable()
     {
         Debug.Log("Loading next scene");
-        SceneManager.LoadScene("Game Level 1", LoadSceneMode.Single);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
     }
 }
