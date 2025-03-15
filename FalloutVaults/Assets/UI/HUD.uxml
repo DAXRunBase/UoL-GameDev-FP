@@ -1,10 +1,6 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/HUD.uss?fileID=7433441132597879392&amp;guid=f5b8bbeb08a341b419447c22cf2b2cc5&amp;type=3#HUD" />
-    <ui:VisualElement name="Panel" class="panel" style="flex-grow: 1;">
-        <ui:VisualElement name="Container" class="menu">
-            <ui:Button text="Resume Play" name="ResumeButton" />
-            <ui:Button text="Main Menu" name="MainMenuButton" />
-            <ui:Button text="Exit" name="ExitButton" class="unity-button" />
-        </ui:VisualElement>
-    </ui:VisualElement>
-</ui:UXML>
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/HUD.uss?fileID=7433441132597879392&amp;guid=a03c0dd5634074a408eea8502bb6d4d9&amp;type=3#HUD" />
+    <engine:VisualElement name="HealthBar" class="healthbar">
+        <engine:VisualElement name="Fill" class="healthbarFill" style="flex-grow: 1;" />
+    </engine:VisualElement>
+</engine:UXML>

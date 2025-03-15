@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
     [Tooltip("Player health")]
+    public float MaxHealth = 100f;
     public float Health = 100f;
     [Tooltip("Player is Dead")]
     public bool IsDead = false;
@@ -378,6 +379,7 @@ public class PlayerController : MonoBehaviour
         if (IsDead) return;
 
         Health -= damage;
+        Health = Mathf.Clamp(Health, 0, MaxHealth);
         Debug.Log($"💥 Player Takes Damage! Health: {Health}, Damage taken: -{damage}");
 
         if (Health <= 0)

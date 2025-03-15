@@ -1,0 +1,59 @@
+.panel {
+    -unity-background-image-tint-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(103, 103, 103, 0.72);
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.menu {
+    background-color: rgba(154, 154, 154, 0.58);
+    background-size: 100% 100%;
+    width: 30%;
+    align-items: center;
+    align-content: flex-start;
+    min-height: auto;
+    max-height: none;
+    justify-content: center;
+    height: 40%;
+    align-self: auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.unity-button {
+    flex-grow: 0;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: auto;
+    align-content: flex-start;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: 90%;
+    font-size: 30px;
+    height: 20%;
+    -unity-text-align: middle-center;
+    border-left-color: rgb(60, 14, 14);
+    border-right-color: rgb(60, 14, 14);
+    border-top-color: rgb(60, 14, 14);
+    border-bottom-color: rgb(60, 14, 14);
+}
+
+.unity-button:hover {
+    background-color: rgba(156, 156, 39, 0.82);
+    scale: 1.1 1.1;
+    transition-property: scale;
+    transition-duration: 0.25s;
+}
+
+.hide {
+    display: none;
+}
