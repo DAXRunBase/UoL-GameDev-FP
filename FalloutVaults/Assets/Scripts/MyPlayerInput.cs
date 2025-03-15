@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +7,13 @@ public class MyPlayerInput : MonoBehaviour
     public Vector2 move;
     public bool jump;
     public bool sprint;
+
+    private PauseMenuController pauseMenuController;
+
+    private void Start()
+    {
+        pauseMenuController = FindObjectOfType<PauseMenuController>();
+    }
 
     public void OnMove(InputValue value)
     {
@@ -24,8 +30,14 @@ public class MyPlayerInput : MonoBehaviour
         sprint = value.isPressed;
     }
 
+    public void OnExit(InputValue value)
+    {
+        pauseMenuController.ShowMenu();
+    }
+
     private void OnApplicationFocus(bool focus)
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        if (focus && Time.timeScale > 0f)
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 }
