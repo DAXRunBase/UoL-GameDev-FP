@@ -11,8 +11,11 @@ https://www.mixamo.com/#/?page=1&query=pro+rifle+pack&type=Motion%2CMotionPack
 https://assetstore.unity.com/packages/2d/textures-materials/sky/worldskies-free-skybox-pack-86517
 
 https://assetstore.unity.com/packages/2d/textures-materials/floors/yughues-free-sand-materials-12964
+<<<<<<< HEAD
 
 https://www.wallpaperflare.com/atomic-bomb-explosion-nuclear-apocalyptic-city-architecture-wallpaper-ppwmf
+=======
+>>>>>>> 90c6d65868ee91f98a3a80fde9a55d60370b6818
 
 https://www.youtube.com/watch?v=NnPDJfvLeWQ
 https://www.youtube.com/watch?v=uorpwFAd8V4

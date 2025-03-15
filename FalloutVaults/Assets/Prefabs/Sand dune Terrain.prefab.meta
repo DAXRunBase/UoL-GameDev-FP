@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FalloutVaults/Assets/Prefabs/Sand dune Terrain.prefab.meta
 guid: be5115c6b16594443b7322b27caacbc0
 PrefabImporter:
+========
+guid: 97660c2823fc75441bf8ac5eb819e053
+TextScriptImporter:
+>>>>>>>> 90c6d65868ee91f98a3a80fde9a55d60370b6818:FalloutVaults/Assets/Resources/PerformanceTestRunInfo.json.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

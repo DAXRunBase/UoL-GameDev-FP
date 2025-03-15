@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FalloutVaults/Assets/Prefabs/t45 helmet.prefab.meta
 guid: 468aa617fb6091747b1390af2335dddb
 PrefabImporter:
+========
+guid: 94e516197dd3503409c7846ea725fc7b
+TextScriptImporter:
+>>>>>>>> 90c6d65868ee91f98a3a80fde9a55d60370b6818:FalloutVaults/Assets/Resources/PerformanceTestRunSettings.json.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
