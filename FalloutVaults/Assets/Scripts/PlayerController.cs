@@ -2,6 +2,8 @@
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 //using static Unity.Cinemachine.InputAxisControllerBase<T>;
+using System.Collections;
+using HUD;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(MyPlayerInput))]
@@ -16,10 +18,23 @@ public class PlayerController : MonoBehaviour
     private bool IsInFluid = false;
     private float SinkSpeed = 0f;
     private Vector3 Velocity;
+    [Tooltip("Spawning")]
+    private Vector3 SpawnPosition;
+    private Quaternion SpawnRotation;
+    public HUDController HUDController;
+
+    [Header("Sounds")]
+    public AudioClip DeathAudioClip;
+    public AudioClip DamageAudioClip;
+    public AudioClip LandingAudioClip;
+    public AudioClip[] FootstepAudioClips;
+    private AudioSource damageAudioSource;
+    [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
     //[Tooltip("Weapon")]
     //public GameObject Weapon;
 
+    [Header("Movement")]
     [Tooltip("Move speed of the character in m/s")]
     public float MoveSpeed = 2.0f;
 
@@ -32,10 +47,6 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Acceleration and deceleration")]
     public float SpeedChangeRate = 10.0f;
-
-    public AudioClip LandingAudioClip;
-    public AudioClip[] FootstepAudioClips;
-    [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
     [Space(10)]
     [Tooltip("The height the player can jump")]
@@ -125,6 +136,11 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        SpawnPosition = transform.position;
+        SpawnRotation = transform.rotation;
+
+        damageAudioSource = GetComponentInChildren<AudioSource>();
+
         _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
         _hasAnimator = TryGetComponent(out _animator);
@@ -386,12 +402,70 @@ public class PlayerController : MonoBehaviour
         {
             PlayerDie();
         }
+        else
+        {
+            if (damageAudioSource != null && !damageAudioSource.isPlaying)
+            {
+                damageAudioSource.PlayOneShot(DamageAudioClip, 0.5f);
+            }
+        }
     }
 
     private void PlayerDie()
     {
         IsDead = true;
         Debug.Log("!!! DEAD !!!");
+        if (damageAudioSource != null)
+        {
+            Debug.Log("Playing death sound");
+            damageAudioSource.PlayOneShot(DeathAudioClip, 1.5f);
+        }
+
+        if (HUDController != null)
+            HUDController.FadeInDeathMessage();
+
+        StartCoroutine(RespawnRoutine());
+    }
+
+    private IEnumerator RespawnRoutine()
+    {
+        // Wait before respawn
+        yield return new WaitForSeconds(5f); 
+
+        Respawn();
+    }
+
+    // Respawn method to reset player state:
+    private void Respawn()
+    {
+        // Reset all AcidPools in the scene
+        ResetAllAcidPools();
+
+        // Reset health and dead state
+        Health = MaxHealth;
+        IsDead = false;
+
+        // Move player back to spawn point
+        _controller.enabled = false; // temporarily disable to teleport safely
+        transform.SetPositionAndRotation(SpawnPosition, SpawnRotation);
+        _controller.enabled = true;
+
+        if (HUDController != null)
+            HUDController.ResetMessage();
+
+        Debug.Log("Player Respawned!");
+    }
+
+    private void ResetAllAcidPools()
+    {
+        IsInFluid = false;
+        this.SinkSpeed = 0;
+
+        AcidPoolController[] pools = Object.FindObjectsByType<AcidPoolController>(FindObjectsSortMode.None);
+        foreach (AcidPoolController pool in pools)
+        {
+            pool.ResetPool();
+        }
     }
 
     private void FluidDynamics()

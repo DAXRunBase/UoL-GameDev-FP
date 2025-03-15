@@ -40,4 +40,14 @@ public class AcidPoolController : MonoBehaviour
             player.TakeDamage(damagePerSecond * Time.deltaTime);
         }
     }
+
+    public void ResetPool()
+    {
+        isPlayerInside = false;
+        if (player != null)
+        {
+            player.SetInFluid(false, sinkSpeed);
+            player = null;
+        }
+    }
 }

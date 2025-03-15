@@ -3,4 +3,7 @@
     <engine:VisualElement name="HealthBar" class="healthbar">
         <engine:VisualElement name="Fill" class="healthbarFill" style="flex-grow: 1;" />
     </engine:VisualElement>
+    <engine:VisualElement style="width: 50%; height: 20%; position: absolute; left: 25%; top: 20%;">
+        <engine:Label text="THE VAULT HAS CLAIMED YOUR LIFE" name="DeathMessage" style="color: rgb(255, 255, 255); -unity-font-style: normal; -unity-font-definition: url(&quot;project://database/Assets/Fonts/futura.ttf?fileID=12800000&amp;guid=7f70cd12231425c4d98e7d17de924337&amp;type=3#futura&quot;); position: relative; top: auto; left: auto; font-size: 80%; opacity: 1; justify-content: center; align-items: center; -unity-text-align: upper-center;" />
+    </engine:VisualElement>
 </engine:UXML>

@@ -7,6 +7,7 @@ public class ScorpionAI : MonoBehaviour
 
     public Transform pointA; // Patrol start position
     public Transform pointB; // Patrol end position
+    public float AttackDamage = 20f;
     public float patrolSpeed = 2f;
     public float idleTime = 2f;
     public float chaseSpeed = 4f;
@@ -177,7 +178,7 @@ public class ScorpionAI : MonoBehaviour
         if (playerController != null && !playerController.IsDead && Vector3.Distance(transform.position, player.position) < attackRange)
         {
             Debug.Log("💥 Scorpion Dealing Damage!");
-            playerController.TakeDamage(10);
+            playerController.TakeDamage(AttackDamage);
         }
         else
         {
